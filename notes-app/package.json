@@ -1,0 +1,26 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "A note keeping app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashishsingh2601/notesApp.git"
+  },
+  "author": "Ashish Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashishsingh2601/notesApp/issues"
+  },
+  "homepage": "https://github.com/ashishsingh2601/notesApp#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "nodemon": "^2.0.4",
+    "validator": "^10.8.0",
+    "yargs": "^15.3.1"
+  }
+}
