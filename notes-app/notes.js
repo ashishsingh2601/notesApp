@@ -41,18 +41,13 @@ const loadNotes = () => {
 
 const removeNotes = (title) => {
     const notes = loadNotes();
-    const checkEqual = notes.filter((note) => note.title === title)
+    const notesToKeep = notes.filter((note) => note.title !== title)
    
-
-    if(checkEqual.length === 1){
-        notes.pop({
-            title: title
-            
-        });
-        saveNotes(notes);
+     if(notes.length > notesToKeep.length){
+        saveNotes(notesToKeep);
         console.log(chalk.red.inverse('Note Deleted!'));
     } else{
-        console.log(chalk.yellow.inverse('No such note available to be deleted!'));
+        console.log(chalk.yellow.inverse("No such note found!"));
     }
 };
 
