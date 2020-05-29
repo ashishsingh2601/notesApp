@@ -1,5 +1,6 @@
 
 const fs = require('fs');
+const chalk = require("chalk");
 
 const getNotes = () => "Your notes...";
 
@@ -15,9 +16,9 @@ const addNotes = (title, body) => {
             body: body
         });
         saveNotes(notes);
-        console.log("New note added!");
+        console.log(chalk.green.inverse("New note added!"));
     } else{
-        console.log("Note title already taken!");
+        console.log(chalk.yellow.inverse("Note title already taken!"));
     }
  
 };
@@ -49,16 +50,23 @@ const removeNotes = (title) => {
             
         });
         saveNotes(notes);
-        console.log('Note Deleted!');
+        console.log(chalk.red.inverse('Note Deleted!'));
     } else{
-        console.log('No such note available to be deleted!')
+        console.log(chalk.yellow.inverse('No such note available to be deleted!'));
     }
+};
 
-
+const listNotes = () => {
+    const notes = loadNotes();
+    console.log(chalk.blue.inverse("Your Notes!"));
+    notes.forEach((note)=>{
+        console.log(note.title);
+    });
 };
 
 module.exports = {
     getNotes: getNotes,
     addNotes: addNotes,
-    removeNotes: removeNotes
+    removeNotes: removeNotes,
+    listNotes: listNotes
 };
