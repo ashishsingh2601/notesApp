@@ -38,28 +38,28 @@ const loadNotes = function(){
 };
 
 
-// const removeNotes = function(title, body){
-//     const notes = loadNotes();
-//     const checkEqual = notes.filter(function(note){
-//         return note.title === title;
-//     });
+const removeNotes = function(title){
+    const notes = loadNotes();
+    const checkEqual = notes.filter(function(note){
+        return note.title === title;
+    });
 
-//     if(checkEqual.length === 1){
-//         notes.pop({
-//             title: title,
-//             body: body
-//         });
-//         saveNotes(notes);
-//         console.log('Deleting mentioned note!');
-//     } else{
-//         console.log('No such note available to be deleted!')
-//     }
+    if(checkEqual.length === 1){
+        notes.pop({
+            title: title
+            
+        });
+        saveNotes(notes);
+        console.log('Note Deleted!');
+    } else{
+        console.log('No such note available to be deleted!')
+    }
 
 
-// };
+};
 
 module.exports = {
     getNotes: getNotes,
-    addNotes: addNotes
-    // removeNotes: removeNotes
+    addNotes: addNotes,
+    removeNotes: removeNotes
 };
