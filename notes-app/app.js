@@ -1,5 +1,4 @@
-
-
+//jshint esversion:6
 
 //Importing different files within same directory
 // const add = require('./utils.js');  //'utils.js' imported 
@@ -93,8 +92,15 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Reading a note',
-    handler: () =>{
-        console.log("Reading a note");
+    builder: {
+        title: {
+            describe: 'Note Title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) =>{
+        notes.readNotes(argv.title);
     }
 });
 

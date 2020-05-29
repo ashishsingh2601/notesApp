@@ -1,4 +1,4 @@
-
+//jshint esversion:6
 const fs = require('fs');
 const chalk = require("chalk");
 
@@ -6,11 +6,9 @@ const getNotes = () => "Your notes...";
 
 const addNotes = (title, body) => {
     const notes = loadNotes();
-    const duplicateNotes = notes.filter(function(note){
-        return note.title === title; 
-    });
-
-    if(duplicateNotes.length === 0){
+    const duplicateNote = notes.find((note) =>   note.title === title);
+     
+    if(!duplicateNote){
         notes.push({
             title: title,
             body: body
@@ -41,7 +39,7 @@ const loadNotes = () => {
 
 const removeNotes = (title) => {
     const notes = loadNotes();
-    const notesToKeep = notes.filter((note) => note.title !== title)
+    const notesToKeep = notes.filter((note) => note.title !== title);
    
      if(notes.length > notesToKeep.length){
         saveNotes(notesToKeep);
@@ -59,9 +57,22 @@ const listNotes = () => {
     });
 };
 
+const readNotes = (title) => {
+    const notes = loadNotes();
+    const foundNote = notes.find((note) => note.title === title);
+
+    if(foundNote){
+        console.log(chalk.green.inverse(foundNote.title));
+        console.log(foundNote.body);
+    } else{
+        console.log(chalk.red.inverse("Note not found!"));
+    }
+};
+
 module.exports = {
     getNotes: getNotes,
     addNotes: addNotes,
     removeNotes: removeNotes,
-    listNotes: listNotes
+    listNotes: listNotes,
+    readNotes: readNotes
 };
